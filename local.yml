@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/app
     env_file:
-      - .env
+      - .env.example
     restart: unless-stopped
 
   db:
