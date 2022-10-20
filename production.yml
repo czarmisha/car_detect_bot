@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bot
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - event-scheduler_default
+
+networks:
+  event-scheduler_default:
+    external: true
