@@ -1,4 +1,4 @@
-import os, requests, base64, logging
+import os, requests, base64, logging, re
 from pathlib import Path
 from datetime import datetime
 from telegram import Update
@@ -42,7 +42,7 @@ def get_plate_numbers(file_path):
 
 
 def car_detect(update: Update, context: CallbackContext):
-    logger.info('Start detection')
+    logger.info('Start detection...')
     logger.info('Downloading file')
     file = context.bot.getFile(update.message.photo[1].file_id)
     file_path = f'media/images/{update.effective_user.id}-{datetime.now().strftime("%Y%m%d%H%M")}.jpg'
@@ -58,18 +58,23 @@ def car_detect(update: Update, context: CallbackContext):
         statement = select(Car).filter(func.similarity(Car.plate, num['plate'].upper()) > 0.4)
         car = local_session.execute(statement).scalars().first()
         if car:
+            phone = re.sub("[^0-9]", "", car.owner_phone)
+            if len(phone) == 9:
+                phone = f'+998{phone}'
+            elif len(phone) == 12:
+                phone = f'+{phone}'
             logger.info('SUCCESS DETECTION')
             txt = 'Это возможно наша машина:\n'
             txt +=  f'Номер машины: {car.plate}\n' if car.plate else ''
             txt +=  f'Имя: {car.owner_name}' if car.owner_name else ''
             txt +=  f' - {car.owner_username}\n' if car.owner_username else ''
-            txt +=  f'Номер владельца: {car.owner_phone}\n' if car.owner_phone else ''
+            txt +=  f'Номер владельца: {phone}\n' if phone else ''
             txt +=  f'Отдел: {car.owner_department}\n' if car.owner_department else ''
             txt +=  f'Кабинет: {car.owner_cabinet}\n' if car.owner_cabinet else ''
 
             update.message.reply_text(txt)
-            if not car.owner_username:
-                context.bot.send_contact(update.effective_chat.id, car.owner_phone, car.owner_name)
+            # if not car.owner_username:
+            #     context.bot.send_contact(update.effective_chat.id, phone, car.owner_name)
             
             break
 
