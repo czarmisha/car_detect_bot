@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uzinfocom Parking Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<h1>Uzinfocom Parking Management</h1>
+<div class="flex justify-between">
+    <a class="button" href="{{ url_for('add_car') }}">Add New Record</a>
+    <h4 class="telegram-welcome"><span>Welcome, {{ name }}!</span>
+        <a class="button-logout" href="{{ url_for('logout') }}">Logout</a>
+    </h4>
+</div>
+
+
+<div style="padding-top: 10px">
+    <table class="table table-striped-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Model</th>
+            <th scope="col">Plate</th>
+            <th scope="col">Owner Phone</th>
+            <th scope="col">Owner Name</th>
+            <th scope="col">Owner Email</th>
+            <th scope="col">Owner Department</th>
+            <th scope="col">Owner Cabinet</th>
+            <th scope="col">Owner Username</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+        <tr>
+            <th scope="row">{{car.id}}</th>
+            <td>{{ car.model }}</td>
+            <td>{{ car.plate }}</td>
+            <td>{{ car.owner_phone }}</td>
+            <td>{{ car.owner_name }}</td>
+            <td>{{ car.owner_email }}</td>
+            <td>{{ car.owner_department }}</td>
+            <td>{{ car.owner_cabinet }}</td>
+            <td>{{ car.owner_username }}</td>
+            <td>
+                <a class="button-edit" href="{{ url_for('edit_car', car_id=car.id) }}">Edit</a>
+                <a class="button-delete" href="{{ url_for('delete_car', car_id=car.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
