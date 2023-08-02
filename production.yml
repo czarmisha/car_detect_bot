@@ -26,6 +26,7 @@ services:
     restart: unless-stopped
     networks:
       - event-scheduler_default
+      - car-detect-bot_default
 
   nginx:
     build: ./nginx
@@ -33,6 +34,8 @@ services:
       - "0.0.0.0:8099:80"
     depends_on:
       - web
+    networks:
+      - car-detect-bot_default
 
 networks:
   event-scheduler_default:
