@@ -25,7 +25,7 @@ services:
       - .env
     restart: unless-stopped
     networks:
-      - c
+      - event-scheduler_default
 
   nginx:
     build: ./nginx
@@ -34,7 +34,7 @@ services:
     depends_on:
       - web
     networks:
-      - car-detect-bot_default
+      - event-scheduler_default
 
 networks:
   event-scheduler_default:
