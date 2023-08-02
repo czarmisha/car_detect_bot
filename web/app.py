@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, redirect, session, make_response
-import os, requests, threading
+import os, requests
 from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy.orm import declarative_base, sessionmaker
