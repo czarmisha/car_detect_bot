@@ -1,0 +1,173 @@
+/* style.css */
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 20px;
+}
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+h1 {
+    color: #4169E1;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+table {
+    border-radius: 3px;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.3);
+}
+
+th,
+td {
+    border-radius: 3px;
+    padding: 12px 15px;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+tr {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+.tg-page{
+  position: relative;
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+/* Button Styles */
+a.button,
+a.button-logout,
+a.button-edit,
+a.button-delete,
+a.button-login {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.4s;
+}
+
+a.button {
+    background-color: #0F52BA;
+}
+
+a.button-logout {
+    background-color: #0F52BA;
+}
+
+a.button-login {
+    background-color: #0F52BA;
+    padding : 10px 20px;
+}
+
+a.button-edit {
+    background-color: #0F52BA;
+}
+
+a.button-delete {
+    background-color: #DC143C;
+}
+
+a.button-logout:hover, a.button-login:hover {
+    background-color: #000080;
+}
+a.button:hover,
+a.button-edit:hover {
+    background-color: #000080;
+}
+
+a.button-delete:hover {
+    background-color: #880808;
+}
+
+a.button-cancel:hover {
+    background-color: #808080;
+}
+
+/* For Add and Edit */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-container form {
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-container label {
+    width: 100%;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 18.5px;
+}
+
+.button-container {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+}
+
+.button-cancel,
+.button-submit {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.4s;
+    text-align: center;
+    flex: 1;
+}
+
+.button-cancel {
+    background-color: #A9A9A9;
+}
+
+.button-submit {
+    background-color: #0F52BA;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #000080;
+}

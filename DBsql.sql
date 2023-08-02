@@ -1,0 +1,1 @@
+CREATE SEQUENCE car_id_seq;

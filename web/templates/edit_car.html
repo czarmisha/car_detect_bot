@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Record</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Edit Record</h1>
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('edit_car', car_id=car.id) }}">
+            <label>Model: <input type="text" name="model" value="{{ car.model }}" placeholder="" required></label><br>
+            <label>Plate: <input type="text" name="plate" value="{{ car.plate }}" placeholder="" required></label><br>
+            <label>Owner Phone: <input type="text" name="owner_phone" value="{{ car.owner_phone }}" placeholder="" required></label><br>
+            <label>Owner Name: <input type="text" name="owner_name" value="{{ car.owner_name }}" placeholder=""></label><br>
+            <label>Owner Email: <input type="email" name="owner_email" value="{{ car.owner_email }}" placeholder=""></label><br>
+            <label>Owner Department: <input type="text" name="owner_department" value="{{ car.owner_department }}" placeholder=""></label><br>
+            <label>Owner Cabinet: <input type="text" name="owner_cabinet" value="{{ car.owner_cabinet }}" placeholder=""></label><br>
+            <label>Owner Username: <input type="text" name="owner_username" value="{{ car.owner_username }}" placeholder=""></label><br>
+            <div class="button-container">
+                <a class="button-cancel" href="{{ url_for('home')}}">Cancel</a>
+                <input class="button-submit" type="submit" value="Update">
+                </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -13,15 +13,19 @@ services:
     volumes:
       - .:/app
     env_file:
-      - .env.example
+      - .env
     restart: unless-stopped
 
   db:
     image: postgres:14.4-alpine
     volumes:
       - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_EXTENSIONS: pg_trgm
     env_file:
       - .env
+    ports:
+      - "5434:5432"
     restart: unless-stopped
 
   adminer:
@@ -29,3 +33,16 @@ services:
     restart: unless-stopped
     ports:
       - 8088:8080
+
+  web:
+    build:
+      context: web
+      dockerfile: Dockerfile
+    command: ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "app:app"]
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    env_file:
+      - .env
+    restart: unless-stopped

@@ -1,0 +1,42 @@
+<!-- unauthorized.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unauthorized Access</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        // Disable the browser's default back button behavior
+        window.onload = function () {
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+                window.location.replace("/"); // Redirect to the login page (index)
+            };
+        };
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .error-message {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="error-message">Unauthorized Access</h1>
+        <p>You are not authorized to access this website.</p>
+        <p>Before trying again don't forget to go to 'Telegram' chat in Telegram and press 'Disconnect' and 'Terminate session' buttons.</p>
+        <a class="btn btn-primary" href="{{ url_for('index') }}">Back to login page</a>
+    </div>
+</body>
+</html>
