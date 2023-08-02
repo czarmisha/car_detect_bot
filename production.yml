@@ -3,7 +3,6 @@ version: '3.7'
 volumes:
   db_data:
 
-
 services:
   bot:
     build:
@@ -15,35 +14,21 @@ services:
     env_file:
       - .env
     restart: unless-stopped
-
-  db:
-    image: postgres:14.4-alpine
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_EXTENSIONS: pg_trgm
-    env_file:
-      - .env
-    ports:
-      - "5434:5432"
-    restart: unless-stopped
-
-  adminer:
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - 8088:8080
+    networks:
+      - event-scheduler_default
 
   web:
     build:
       context: web
       dockerfile: Dockerfile
-    command: ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "app:app"]
+    command: [ "gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "app:app" ]
     depends_on:
       - db
     env_file:
       - .env
     restart: unless-stopped
+    networks:
+      - event-scheduler_default
 
   nginx:
     build: ./nginx
@@ -51,3 +36,7 @@ services:
       - "0.0.0.0:8099:80"
     depends_on:
       - web
+
+networks:
+  event-scheduler_default:
+    external: true
