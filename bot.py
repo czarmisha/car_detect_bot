@@ -10,7 +10,6 @@ if os.path.exists(dotenv_path):
 token = os.environ['BOT_TOKEN']
 
 if __name__ == '__main__':
-    print("TOKEN:", token)
     updater = Updater(token=token)
     dispatcher = updater.dispatcher
 

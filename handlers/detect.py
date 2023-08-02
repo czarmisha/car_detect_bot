@@ -42,7 +42,6 @@ def get_plate_numbers(photo_url):
         response.raise_for_status()  # Raise an exception for bad responses (4xx or 5xx)
 
         data = response.json()
-        print(data)  # Print the API response for debugging purposes
 
         # Extract plate numbers from the list of dictionaries
         return data
@@ -75,13 +74,9 @@ def car_detect(update: Update, context: CallbackContext):
     for num in plate_nums:
         l_pic = num['value']
         l5_pic = l_pic[-5:]
-
-
-        logger.info(f"KUKU {select(Car).filter(func.substr(Car.plate, 4, 5))} {type(Car.plate)}")
-
         statement = select(Car).filter(func.similarity(func.substr(Car.plate, 4, 5), l5_pic.upper()) > 0.3)
-
         car = local_session.execute(statement).scalars().first()
+
         if car:
             phone = re.sub("[^0-9]", "", car.owner_phone)
             if len(phone) == 9:
