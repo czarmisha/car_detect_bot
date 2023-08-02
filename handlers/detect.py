@@ -68,7 +68,7 @@ def car_detect(update: Update, context: CallbackContext):
     plate_nums = get_plate_numbers(url)
     if not plate_nums:
         logger.info('I can\'t recognize the plate number')
-        return  update.message.reply_text('did not recognize the plate number')
+        # return  update.message.reply_text('did not recognize the plate number')
 
     local_session = Session(bind=engine)
     for num in plate_nums:
