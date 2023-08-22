@@ -93,6 +93,7 @@ def requires_authentication(f):
 def index(*args, **kwargs):
     # Check if the user_id is stored in the session (cookie)
     user_id = session.get('user_id')
+    host_url = request.base_url
 
     if user_id and 'last_auth_time':
         # Check if the session has expired based on the session lifetime
@@ -108,7 +109,7 @@ def index(*args, **kwargs):
             return redirect(url_for('home'))
 
         # If user_id or last_auth_time is missing or session has expired, redirect to login page
-    return user_info("telegram.html")
+    return user_info("telegram.html", host_url=host_url)
 
 
 @app.route("/logout")
