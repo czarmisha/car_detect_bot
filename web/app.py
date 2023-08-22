@@ -93,7 +93,7 @@ def requires_authentication(f):
 def index(*args, **kwargs):
     # Check if the user_id is stored in the session (cookie)
     user_id = session.get('user_id')
-    host_url = request.base_url
+    host_url = request.url_root
 
     if user_id and 'last_auth_time':
         # Check if the session has expired based on the session lifetime
