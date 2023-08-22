@@ -94,6 +94,7 @@ def index(*args, **kwargs):
     # Check if the user_id is stored in the session (cookie)
     user_id = session.get('user_id')
     host_url = request.url_root
+    bot_id = os.environ.get('BOT_ID', None)
 
     if user_id and 'last_auth_time':
         # Check if the session has expired based on the session lifetime
@@ -109,7 +110,7 @@ def index(*args, **kwargs):
             return redirect(url_for('home'))
 
         # If user_id or last_auth_time is missing or session has expired, redirect to login page
-    return user_info("telegram.html", host_url=host_url)
+    return user_info("telegram.html", host_url=host_url, bot_id=bot_id)
 
 
 @app.route("/logout")
