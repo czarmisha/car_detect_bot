@@ -9,7 +9,7 @@ dotenv_path = os.path.join(_BASE_DIR, '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
-_db_host = os.environ['POSTGRES_HOST']
+_db_host = os.environ['BOT_POSTGRES_HOST']
 _db_username = os.environ['POSTGRES_USERNAME']
 _db_password = os.environ['POSTGRES_PASSWORD']
 _db_name = os.environ['POSTGRES_DB']
